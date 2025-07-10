@@ -1,0 +1,1160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bagus Kurniawan - Portfolio</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #4a69bd; /* A deep, professional blue */
+            --secondary-color: #3b5998; /* A slightly darker blue */
+            --accent-color: #f6b93b; /* A warm, subtle gold/orange for accent */
+            --dark-color: #2c3e50; /* Dark slate grey */
+            --light-color: #34495e; /* Slightly lighter slate grey */
+            --text-light: #ecf0f1; /* Light grey for text */
+            --glass-bg: rgba(255, 255, 255, 0.08); /* Slightly more transparent glass */
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, var(--dark-color) 0%, var(--light-color) 100%);
+            color: #ffffff;
+            overflow-x: hidden;
+        }
+
+        /* Animated background particles */
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .particle {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(180deg); }
+        }
+
+        /* Glassmorphism navbar */
+        .navbar {
+            background: rgba(255, 255, 255, 0.1) !important;
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .navbar-brand {
+            color: #ffffff !important;
+            font-weight: 700;
+            font-size: 1.5rem;
+            background: linear-gradient(45deg, var(--primary-color), var(--accent-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-link {
+            color: rgba(255, 255, 255, 0.9) !important;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-link:hover {
+            color: var(--accent-color) !important;
+            transform: translateY(-2px);
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(45deg, var(--primary-color), var(--accent-color));
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        /* Hero section with animated elements */
+        .hero-section {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><polygon fill="%23ffffff10" points="0,0 1000,300 1000,1000 0,700"/></svg>');
+            background-size: cover;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-title {
+            font-size: 4rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, #ffffff, var(--accent-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: slideInUp 1s ease-out;
+        }
+
+        .hero-subtitle {
+            font-size: 1.5rem;
+            font-weight: 300;
+            margin-bottom: 2rem;
+            animation: slideInUp 1s ease-out 0.2s both;
+        }
+
+        .hero-location {
+            font-size: 1.2rem;
+            opacity: 0.8;
+            margin-bottom: 2rem;
+            animation: slideInUp 1s ease-out 0.4s both;
+        }
+
+        .hero-buttons {
+            animation: slideInUp 1s ease-out 0.6s both;
+        }
+
+        .btn-glow {
+            background: linear-gradient(45deg, var(--primary-color), var(--accent-color));
+            border: none;
+            padding: 12px 30px;
+            border-radius: 50px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-glow::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: left 0.6s ease;
+        }
+
+        .btn-glow:hover::before {
+            left: 100%;
+        }
+
+        .btn-glow:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(102, 126, 234, 0.4);
+        }
+
+        /* Glass cards */
+        .glass-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 20px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .glass-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 100%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .glass-card:hover::before {
+            opacity: 1;
+        }
+
+        .glass-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .section-title {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 3rem;
+            text-align: center;
+            position: relative;
+            background: linear-gradient(45deg, var(--primary-color), var(--accent-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            left: 50%;
+            bottom: -15px;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(45deg, var(--primary-color), var(--accent-color));
+            border-radius: 2px;
+        }
+
+        /* Skill bars */
+        .skill-item {
+            margin-bottom: 1.5rem;
+        }
+
+        .skill-name {
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .skill-bar {
+            height: 8px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .skill-progress {
+            height: 100%;
+            background: linear-gradient(45deg, var(--primary-color), var(--accent-color));
+            border-radius: 4px;
+            transition: width 2s ease;
+            position: relative;
+        }
+
+        .skill-progress::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            animation: shine 2s infinite;
+        }
+
+        @keyframes shine {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+
+        /* Experience timeline */
+        .timeline {
+            position: relative;
+            padding-left: 2rem;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(to bottom, var(--primary-color), var(--accent-color));
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 2rem;
+            padding-left: 2rem;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -1.5rem;
+            top: 0;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, var(--primary-color), var(--accent-color));
+            box-shadow: 0 0 0 4px var(--dark-color);
+        }
+
+        .timeline-content {
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 15px;
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .timeline-content:hover {
+            transform: translateX(10px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .timeline-title {
+            color: var(--accent-color);
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-company {
+            color: rgba(255, 255, 255, 0.8);
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-date {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .hidden-timeline-item {
+            display: none;
+        }
+
+        /* Contact section */
+        .contact-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 20px;
+            padding: 3rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        @keyframes rotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .contact-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, var(--primary-color), var(--accent-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .social-links {
+            margin-top: 2rem;
+        }
+
+        .social-link {
+            display: inline-flex; /* Use flexbox for centering content */
+            align-items: center;
+            justify-content: center;
+            margin: 0 1rem;
+            width: 3.5rem; /* Explicit width to ensure perfect circle */
+            height: 3.5rem; /* Explicit height to ensure perfect circle */
+            background: var(--glass-bg);
+            border-radius: 50%;
+            color: #ffffff;
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            cursor: pointer; /* Add pointer cursor on hover */
+        }
+
+        .social-link:hover {
+            transform: translateY(-5px) scale(1.1) rotate(5deg); /* Add slight rotation */
+            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.3);
+            color: var(--accent-color);
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--dark-color);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 2rem 0;
+            text-align: center;
+        }
+
+        /* Animations */
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in {
+            animation: slideInUp 0.8s ease-out;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2.5rem;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .timeline {
+                padding-left: 1rem;
+            }
+            
+            .timeline-item {
+                padding-left: 1rem;
+            }
+        }
+
+        /* Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--dark-color);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(45deg, var(--primary-color), var(--accent-color));
+            border-radius: 4px;
+        }
+
+        /* Loading animation */
+        .loading-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--dark-color);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 0.5s ease;
+        }
+
+        .loader {
+            width: 50px;
+            height: 50px;
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            border-top: 3px solid var(--accent-color);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div class="loading-screen" id="loading">
+        <div class="loader"></div>
+    </div>
+
+    <!-- Animated Background -->
+    <div class="particles" id="particles"></div>
+
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#"><i class="fas fa-code"></i> Bagus Kurniawan</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#home"><i class="fas fa-home"></i> Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#about"><i class="fas fa-user"></i> About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#skills"><i class="fas fa-cogs"></i> Skills</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#experience"><i class="fas fa-briefcase"></i> Experience</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#education"><i class="fas fa-graduation-cap"></i> Education</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contact"><i class="fas fa-envelope"></i> Contact</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <section id="home" class="hero-section">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6 hero-content">
+                    <h1 class="hero-title">Bagus Kurniawan</h1>
+                    <p class="hero-subtitle">Back End Developer</p>
+                    <p class="hero-location">
+                        <i class="fas fa-map-marker-alt"></i> Surabaya, East Java, Indonesia
+                    </p>
+                    <div class="hero-buttons">
+                        <a href="#contact" class="btn btn-glow me-3">
+                            <i class="fas fa-envelope"></i> Get In Touch
+                        </a>
+                        <a href="#about" class="btn btn-outline-light">
+                            <i class="fas fa-user"></i> Learn More
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="hero-image text-center">
+                        <div class="floating-icon">
+                            <i class="fas fa-laptop-code" style="font-size: 15rem; opacity: 0.1;"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="py-5">
+        <div class="container">
+            <h2 class="section-title fade-in">About Me</h2>
+            <div class="row justify-content-center">
+                <div class="col-lg-10">
+                    <div class="glass-card fade-in">
+                        <div class="row">
+                            <div class="col-md-4 text-center mb-4">
+                                <div class="about-icon">
+                                    <i class="fas fa-code" style="font-size: 4rem; color: var(--accent-color);"></i>
+                                </div>
+                            </div>
+                            <div class="col-md-8">
+                                <p class="lead">
+                                    As a dedicated Back End Developer with extensive experience in various industries, I specialize in building robust, efficient, and secure web applications. My expertise spans API development, code review, and database architecture, with a strong focus on delivering high-quality features and managing projects from initiation to completion.
+                                </p>
+                                <p>
+                                    I am passionate about continuous learning and adapting to new technologies and work cultures, as demonstrated by my involvement in international projects. With a strong foundation in both technical skills and project management, I bring a unique perspective to every development challenge.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="skills" class="py-5">
+        <div class="container">
+            <h2 class="section-title fade-in">Skills & Expertise</h2>
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="glass-card fade-in">
+                        <h3 class="mb-4"><i class="fas fa-tools"></i> Technical Skills</h3>
+                        <div class="skill-item">
+                            <div class="skill-name">
+                                <span>API Development</span>
+                                <span>95%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 95%;"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-name">
+                                <span>Code Review</span>
+                                <span>90%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 90%;"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-name">
+                                <span>Back-End Development</span>
+                                <span>92%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 92%;"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-name">
+                                <span>Database Architecture</span>
+                                <span>88%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 88%;"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="glass-card fade-in">
+                        <h3 class="mb-4"><i class="fas fa-language"></i> Languages</h3>
+                        <div class="skill-item">
+                            <div class="skill-name">
+                                <span>Indonesian</span>
+                                <span>Native</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 100%;"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-name">
+                                <span>Javanese</span>
+                                <span>Native</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 100%;"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-name">
+                                <span>English</span>
+                                <span>Professional</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 80%;"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="experience" class="py-5">
+        <div class="container">
+            <h2 class="section-title fade-in">Professional Experience</h2>
+            <div class="row">
+                <div class="col-lg-10 mx-auto">
+                    <div class="timeline fade-in">
+                        <div class="timeline-item">
+                            <div class="timeline-content">
+                                <h4 class="timeline-title">Technical Project Lead</h4>
+                                <h5 class="timeline-company">OlshopERP</h5>
+                                <p class="timeline-date">April 2023 - May 2025 (2 years 2 months) | Indonesia</p>
+                                <p>Leading technical projects and managing development teams to deliver high-quality solutions.</p>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-content">
+                                <h4 class="timeline-title">Back End Developer</h4>
+                                <h5 class="timeline-company">PT Digital Entropy Venture</h5>
+                                <p class="timeline-date">May 2022 - April 2023 (1 year) | Surabaya, East Java</p>
+                                <p>Developed robust backend systems and APIs for various client projects.</p>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-content">
+                                <h4 class="timeline-title">Full Stack Developer</h4>
+                                <h5 class="timeline-company">PT. Pelayaran Nasional Ekalya Purnamasari Tbk</h5>
+                                <p class="timeline-date">May 2022 - April 2023 (1 year) | Surabaya, East Java</p>
+                                <p>Worked on full-stack solutions for maritime industry applications.</p>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-content">
+                                <h4 class="timeline-title">Full Stack Developer</h4>
+                                <h5 class="timeline-company">PT. Sarana Mendulang Arta</h5>
+                                <p class="timeline-date">December 2021 - April 2023 (1 year 5 months) | Surabaya</p>
+                                <p>PIC of Finance Accounting & SCM modules, developing comprehensive business solutions.</p>
+                            </div>
+                        </div>
+                        <div class="timeline-item hidden-timeline-item">
+                            <div class="timeline-content">
+                                <h4 class="timeline-title">Back End Developer</h4>
+                                <h5 class="timeline-company">Keraton Karya Solusi</h5>
+                                <p class="timeline-date">February 2022 | Surabaya, East Java</p>
+                                <p>Utilized Go programming language for Teavaro project, gained experience working with European company and London team.</p>
+                            </div>
+                        </div>
+                        <div class="timeline-item hidden-timeline-item">
+                            <div class="timeline-content">
+                                <h4 class="timeline-title">Backend Developer</h4>
+                                <h5 class="timeline-company">DoBuy Indonesia</h5>
+                                <p class="timeline-date">April 2019 - November 2019 (8 months) | Surabaya</p>
+                                <p>Responsible for security, efficiency, and database architecture of e-commerce platform.</p>
+                            </div>
+                        </div>
+                        <div class="timeline-item hidden-timeline-item">
+                            <div class="timeline-content">
+                                <h4 class="timeline-title">Back End Developer</h4>
+                                <h5 class="timeline-company">PT Digital Entropy Venture</h5>
+                                <p class="timeline-date">May 2022 - August 2022 (4 months) | Surabaya, East Java, Indonesia</p>
+                                <p>Developed robust backend systems and APIs for various client projects.</p>
+                            </div>
+                        </div>
+                        <div class="timeline-item hidden-timeline-item">
+                            <div class="timeline-content">
+                                <h4 class="timeline-title">Back End Developer</h4>
+                                <h5 class="timeline-company">PT. Sarana Mendulang Arta</h5>
+                                <p class="timeline-date">November 2019 - November 2021 (2 years 1 month) | Sidoarjo, East Java, Indonesia</p>
+                                <p>Responsible for backend development and SCM modules.</p>
+                            </div>
+                        </div>
+                        <div class="timeline-item hidden-timeline-item">
+                            <div class="timeline-content">
+                                <h4 class="timeline-title">Full-stack Developer</h4>
+                                <h5 class="timeline-company">PT Usaha Kreatif Indonesia</h5>
+                                <p class="timeline-date">April 2022 (1 month) | Surabaya, East Java, Indonesia</p>
+                                <p>Contributed to full-stack development projects.</p>
+                            </div>
+                        </div>
+                        <div class="timeline-item hidden-timeline-item">
+                            <div class="timeline-content">
+                                <h4 class="timeline-title">Full Stack Developer</h4>
+                                <h5 class="timeline-company">Kipa Indonesia</h5>
+                                <p class="timeline-date">January 2020 (1 month) | Malang, East Java, Indonesia</p>
+                                <p>Developed Point of Sale solutions, collaborating with the team to bring the project to fruition.</p>
+                            </div>
+                        </div>
+                        <div class="timeline-item hidden-timeline-item">
+                            <div class="timeline-content">
+                                <h4 class="timeline-title">Team Leader</h4>
+                                <h5 class="timeline-company">Nalar Naluri</h5>
+                                <p class="timeline-date">July 2018 - April 2019 (10 months) | Jakarta, Jakarta, Indonesia</p>
+                                <p>Oversaw project management, handled projects from initiation to completion, and led discussions to find solutions for bugs and technical issues.</p>
+                            </div>
+                        </div>
+                        <div class="timeline-item hidden-timeline-item">
+                            <div class="timeline-content">
+                                <h4 class="timeline-title">Backend Programmer</h4>
+                                <h5 class="timeline-company">Nalar Naluri</h5>
+                                <p class="timeline-date">February 2018 - June 2018 (5 months) | Greater Jakarta Area, Indonesia</p>
+                                <p>Involved in diverse projects including e-commerce ventures and landing page creation, handled server-related responsibilities like website deployment.</p>
+                            </div>
+                        </div>
+                        <div class="timeline-item hidden-timeline-item">
+                            <div class="timeline-content">
+                                <h4 class="timeline-title">Software Programmer</h4>
+                                <h5 class="timeline-company">the greatsoft</h5>
+                                <p class="timeline-date">June 2017 - January 2018 (8 months) | Surabaya Area, East Java, Indonesia</p>
+                                <p>Worked on government-related projects, involved in system implementation and communication with various stakeholders.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="text-center mt-4">
+                        <button id="loadMoreBtn" class="btn btn-glow">Load More</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="education" class="py-5">
+        <div class="container">
+            <h2 class="section-title fade-in">Education</h2>
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="glass-card fade-in">
+                        <div class="education-icon text-center mb-3">
+                            <i class="fas fa-university" style="font-size: 3rem; color: var(--accent-color);"></i>
+                        </div>
+                        <h4 class="text-center">Institut Teknologi Adhi Tama Surabaya</h4>
+                        <p class="text-center">Bachelor's degree<br>Management Information Systems and Services</p>
+                        <p class="text-center text-light">2018</p>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="glass-card fade-in">
+                        <div class="education-icon text-center mb-3">
+                            <i class="fas fa-school" style="font-size: 3rem; color: var(--accent-color);"></i>
+                        </div>
+                        <h4 class="text-center">SMK Negeri 1 Surabaya</h4>
+                        <p class="text-center">High School Diploma<br>Computer Software Engineering</p>
+                        <p class="text-center text-light">2014 - 2017</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="py-5">
+        <div class="container">
+            <h2 class="section-title fade-in">Get In Touch</h2>
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="contact-card fade-in">
+                        <div class="contact-icon">
+                            <i class="fas fa-paper-plane"></i>
+                        </div>
+                        <h3 class="mb-3">Let's Work Together</h3>
+                        <p class="lead mb-4">Ready to start your next project? Let's discuss how we can bring your ideas to life.</p>
+                        <div class="contact-buttons">
+                            <a href="mailto:baguskurniawan999@gmail.com" class="btn btn-glow me-3">
+                                <i class="fas fa-envelope"></i> Email Me
+                            </a>
+                            <a href="https://www.linkedin.com/in/bagus-awan" target="_blank" class="btn btn-outline-light">
+                                <i class="fab fa-linkedin"></i> LinkedIn
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <p>&copy; 2025 Bagus Kurniawan. All rights reserved.</p>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <p>Made with <i class="fas fa-heart" style="color: var(--accent-color);"></i> in Surabaya</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Loading screen
+        window.addEventListener('load', function() {
+            const loader = document.getElementById('loading');
+            loader.style.opacity = '0';
+            setTimeout(() => {
+                loader.style.display = 'none';
+            }, 500);
+        });
+
+        // Particle animation
+        function createParticles() {
+            const particlesContainer = document.getElementById('particles');
+            const particleCount = 50;
+            
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.top = Math.random() * 100 + '%';
+                particle.style.animationDelay = Math.random() * 6 + 's';
+                particle.style.animationDuration = (Math.random() * 3 + 3) + 's';
+                particlesContainer.appendChild(particle);
+            }
+        }
+
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Navbar background on scroll
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.style.background = 'rgba(26, 26, 46, 0.9)';
+            } else {
+                navbar.style.background = 'rgba(255, 255, 255, 0.1)';
+            }
+        });
+
+        // Intersection Observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                    
+                    // Animate skill bars
+                    if (entry.target.querySelector('.skill-progress')) {
+                        const skillBars = entry.target.querySelectorAll('.skill-progress');
+                        skillBars.forEach(bar => {
+                            const width = bar.style.width;
+                            bar.style.width = '0%';
+                            setTimeout(() => {
+                                bar.style.width = width;
+                            }, 500);
+                        });
+                    }
+                }
+            });
+        }, observerOptions);
+
+        // Observe all fade-in elements
+        document.querySelectorAll('.fade-in').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'all 0.8s ease';
+            observer.observe(el);
+        });
+
+        // Observe glass cards
+        document.querySelectorAll('.glass-card').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'all 0.8s ease';
+            observer.observe(el);
+        });
+
+        // Typing effect for hero title
+        function typeWriter(element, text, speed = 100) {
+            let i = 0;
+            element.innerHTML = '';
+            
+            function type() {
+                if (i < text.length) {
+                    element.innerHTML += text.charAt(i);
+                    i++;
+                    setTimeout(type, speed);
+                }
+            }
+            
+            type();
+        }
+
+        // Initialize typing effect after page load
+        setTimeout(() => {
+            const heroTitle = document.querySelector('.hero-title');
+            if (heroTitle) {
+                typeWriter(heroTitle, 'Bagus Kurniawan', 150);
+            }
+        }, 1000);
+
+        // Parallax effect for hero section
+        window.addEventListener('scroll', function() {
+            const scrolled = window.pageYOffset;
+            const hero = document.querySelector('.hero-section');
+            if (hero) {
+                hero.style.transform = `translateY(${scrolled * 0.5}px)`;
+            }
+        });
+
+        // Dynamic particle movement
+        function moveParticles() {
+            const particles = document.querySelectorAll('.particle');
+            particles.forEach(particle => {
+                const currentX = parseFloat(particle.style.left);
+                const currentY = parseFloat(particle.style.top);
+                
+                const newX = currentX + (Math.random() - 0.5) * 0.5;
+                const newY = currentY + (Math.random() - 0.5) * 0.5;
+                
+                particle.style.left = Math.max(0, Math.min(100, newX)) + '%';
+                particle.style.top = Math.max(0, Math.min(100, newY)) + '%';
+            });
+        }
+
+        // Button hover effects
+        document.querySelectorAll('.btn-glow').forEach(btn => {
+            btn.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-3px) scale(1.05)';
+            });
+            
+            btn.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0) scale(1)';
+            });
+        });
+
+        // Initialize particles and start animation
+        createParticles();
+        setInterval(moveParticles, 100);
+
+        // Add cursor trail effect
+        let mouseX = 0;
+        let mouseY = 0;
+        let cursorCircles = [];
+
+        document.addEventListener('mousemove', function(e) {
+            mouseX = e.clientX;
+            mouseY = e.clientY;
+        });
+
+        function createCursorCircle() {
+            const circle = document.createElement('div');
+            circle.style.position = 'fixed';
+            circle.style.width = '10px';
+            circle.style.height = '10px';
+            circle.style.borderRadius = '50%';
+            circle.style.background = 'rgba(102, 126, 234, 0.3)';
+            circle.style.pointerEvents = 'none';
+            circle.style.zIndex = '9999';
+            circle.style.left = mouseX + 'px';
+            circle.style.top = mouseY + 'px';
+            circle.style.transition = 'all 0.1s ease';
+            
+            document.body.appendChild(circle);
+            cursorCircles.push(circle);
+            
+            setTimeout(() => {
+                circle.style.opacity = '0';
+                circle.style.transform = 'scale(0)';
+                setTimeout(() => {
+                    document.body.removeChild(circle);
+                    cursorCircles = cursorCircles.filter(c => c !== circle);
+                }, 100);
+            }, 100);
+        }
+
+        // Create cursor trail
+        setInterval(createCursorCircle, 50);
+
+        // Add scroll progress indicator
+        const scrollProgress = document.createElement('div');
+        scrollProgress.style.position = 'fixed';
+        scrollProgress.style.top = '0';
+        scrollProgress.style.left = '0';
+        scrollProgress.style.width = '0%';
+        scrollProgress.style.height = '3px';
+        scrollProgress.style.background = 'linear-gradient(45deg, var(--primary-color), var(--accent-color))';
+        scrollProgress.style.zIndex = '10000';
+        scrollProgress.style.transition = 'width 0.1s ease';
+        document.body.appendChild(scrollProgress);
+
+        window.addEventListener('scroll', function() {
+            const scrollTop = window.pageYOffset;
+            const docHeight = document.body.offsetHeight - window.innerHeight;
+            const scrollPercent = (scrollTop / docHeight) * 100;
+            scrollProgress.style.width = scrollPercent + '%';
+        });
+
+        // Add floating action button
+        const fab = document.createElement('div');
+        fab.innerHTML = '<i class="fas fa-chevron-up"></i>';
+        fab.style.position = 'fixed';
+        fab.style.bottom = '30px';
+        fab.style.right = '30px';
+        fab.style.width = '60px';
+        fab.style.height = '60px';
+        fab.style.borderRadius = '50%';
+        fab.style.background = 'linear-gradient(45deg, var(--primary-color), var(--accent-color))';
+        fab.style.display = 'flex';
+        fab.style.alignItems = 'center';
+        fab.style.justifyContent = 'center';
+        fab.style.color = 'white';
+        fab.style.fontSize = '20px';
+        fab.style.cursor = 'pointer';
+        fab.style.boxShadow = '0 4px 20px rgba(102, 126, 234, 0.3)';
+        fab.style.transition = 'all 0.3s ease';
+        fab.style.zIndex = '1000';
+        fab.style.opacity = '0';
+        fab.style.transform = 'translateY(100px)';
+        
+        document.body.appendChild(fab);
+
+        fab.addEventListener('click', function() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+        window.addEventListener('scroll', function() {
+            if (window.pageYOffset > 300) {
+                fab.style.opacity = '1';
+                fab.style.transform = 'translateY(0)';
+            } else {
+                fab.style.opacity = '0';
+                fab.style.transform = 'translateY(100px)';
+            }
+        });
+
+        fab.addEventListener('mouseenter', function() {
+            this.style.transform = 'translateY(-5px) scale(1.1)';
+        });
+
+        fab.addEventListener('mouseleave', function() {
+            this.style.transform = 'translateY(0) scale(1)';
+        });
+
+        // Load More functionality for timeline
+        document.addEventListener('DOMContentLoaded', function() {
+            const timelineItems = document.querySelectorAll('.timeline-item');
+            const loadMoreBtn = document.getElementById('loadMoreBtn');
+            let itemsToShow = 4;
+            const itemsPerLoad = 4;
+
+            function showItems() {
+                for (let i = 0; i < timelineItems.length; i++) {
+                    if (i < itemsToShow) {
+                        timelineItems[i].classList.remove('hidden-timeline-item');
+                    } else {
+                        timelineItems[i].classList.add('hidden-timeline-item');
+                    }
+                }
+                if (itemsToShow >= timelineItems.length) {
+                    loadMoreBtn.style.display = 'none';
+                } else {
+                    loadMoreBtn.style.display = 'block';
+                }
+            }
+
+            loadMoreBtn.addEventListener('click', function() {
+                itemsToShow += itemsPerLoad;
+                showItems();
+            });
+
+            showItems(); // Initial display
+        });
+    </script>
+</body>
+</html>
